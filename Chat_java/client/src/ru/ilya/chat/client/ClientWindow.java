@@ -1,7 +1,7 @@
-package ru.geekbrains.chat.client;
+package ru.ilya.chat.client;
 
-import ru.geekbrains.network.TCPConnection;
-import ru.geekbrains.network.TCPConnectionListener;
+import ru.ilya.chat.network.TCPConnection;
+import ru.ilya.chat.network.TCPConnectionListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,86 +10,74 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ClientWindow extends JFrame implements ActionListener, TCPConnectionListener {
-
     private static final String IP_ADDR = "109.188.126.1";
-    private static final int PORT = 1024;
+    private static final int PORT = 8080;
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ClientWindow();
-            }
-        });
+        SwingUtilities.invokeLater(ClientWindow::new);
     }
 
     private final JTextArea log = new JTextArea();
-    private final JTextField fieldNickname = new JTextField("alex");
+    private final JTextArea fieldNickname = new JTextArea("ilya");
     private final JTextField fieldInput = new JTextField();
-
     private TCPConnection connection;
 
     private ClientWindow() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
-        setAlwaysOnTop(true);
-
-        log.setEditable(false);
-        log.setLineWrap(true);
+        setSize(WIDTH, HEIGHT); //задаем размеры окна
+        setLocationRelativeTo(null); //устанавливаем окно поцентру
+        setAlwaysOnTop(true); //поверх других окон
+        log.setEnabled(false);//запрещаем редактирование
+        log.setLineWrap(true);//автомотический перенос строк
         add(log, BorderLayout.CENTER);
 
         fieldInput.addActionListener(this);
         add(fieldInput, BorderLayout.SOUTH);
         add(fieldNickname, BorderLayout.NORTH);
 
-        setVisible(true);
+        setVisible(true); // делаем окно видимым
+
         try {
             connection = new TCPConnection(this, IP_ADDR, PORT);
         } catch (IOException e) {
-            printMsg("Connection exception: " + e);
+            e.printStackTrace();
+            ptintMsg("Connection exeption: " + e);
         }
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String msg = fieldInput.getText();
-        if(msg.equals("")) return;
+        if (msg.equals("")) return;
         fieldInput.setText(null);
         connection.sendString(fieldNickname.getText() + ": " + msg);
     }
 
-
     @Override
     public void onConnectionReady(TCPConnection tcpConnection) {
-        printMsg("Connection ready...");
+        ptintMsg("Connection ready...");
     }
 
     @Override
     public void onReceiveString(TCPConnection tcpConnection, String value) {
-        printMsg(value);
+        ptintMsg(value);
     }
 
     @Override
     public void onDisconnect(TCPConnection tcpConnection) {
-        printMsg("Connection close");
+        ptintMsg("Connection close...");
     }
 
     @Override
     public void onException(TCPConnection tcpConnection, Exception e) {
-        printMsg("Connection exception: " + e);
+        ptintMsg("Connection exeption: " + e);
     }
 
-    private synchronized void printMsg(String msg) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                log.append(msg + "\n");
-                log.setCaretPosition(log.getDocument().getLength());
-            }
+    private synchronized void ptintMsg(String msg){
+        SwingUtilities.invokeLater(() -> {
+            log.append(msg + "\n");
+            log.setCaretPosition(log.getDocument().getLength());
         });
     }
 }

@@ -17,10 +17,11 @@ public class ChatServer implements TCPConnectionListener {
 
     private ChatServer() {
         System.out.println("Server running...");
-        try(ServerSocket serverSocket = new ServerSocket(8189)) {
+        try(ServerSocket serverSocket = new ServerSocket(1024)) {
             while(true) {
                 try {
                     new TCPConnection(this, serverSocket.accept());
+                    System.out.println("q");
                 } catch (IOException e) {
                     System.out.println("TCPConnection exception: " + e);
                 }
