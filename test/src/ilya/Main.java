@@ -73,10 +73,7 @@ public class Main {
                 peek(System.out::println).
                 collect(Collectors.toList());
 
-
-
     }
-
     private static void rever(String str){
         System.out.println(new StringBuilder(str).reverse().toString());
     }
