@@ -14,10 +14,17 @@ public class Main {
 //        Collections.sort(array);//использует алгоритм сортировки слиянием
         quicSort();
         System.out.println(Arrays.toString(array));
-        doSort(0 , array.length-1);
+        doSort(0, array.length - 1);
         System.out.println(Arrays.toString(array));
-    }
+        String s = "java";
+        String s1 = new String(s);
+        System.out.println(s == s1);
+        System.out.println(s.equals(s1));
 
+        String d = 2 + 2 + " = v";
+        System.out.println(d);
+
+    }
 
     public static int divide(int a, int b) {
         if (b == 0) return a;
@@ -50,25 +57,25 @@ public class Main {
         if (start >= end) return;
         int i = start, j = end;
         int cur = i - (i - j) / 2;
-        while (i<j){
-            while (i<cur && (array[i] <= array[cur])){
+        while (i < j) {
+            while (i < cur && (array[i] <= array[cur])) {
                 i++;
             }
-            while (j>cur && (array[cur] <= array[j])){
+            while (j > cur && (array[cur] <= array[j])) {
                 j--;
             }
             if (i < j) {
                 int temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
-                if (i == cur){
+                if (i == cur) {
                     cur = j;
-                }else if (j == cur) {
+                } else if (j == cur) {
                     cur = i;
                 }
             }
         }
         doSort(start, cur);
-        doSort(cur+1, end);
+        doSort(cur + 1, end);
     }
 }
