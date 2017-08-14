@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
         int[] newMas = {4, 3, 6, 8, 2, 9, 12, 3, 5};
 //        bubleSotrt(newMas);
-        bubbleSortWhile(newMas);
-
+//        bubbleSortWhile(newMas);
+        viborSort(newMas);
     }
 
     private static void bubleSotrt(int[] arr) {
@@ -39,6 +39,20 @@ public class Main {
                 }
             }
         } while (count > 0);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    private static void viborSort(int[] arr) {
+        int leng = arr.length;
+        for (int i = 0; i < leng; i++) {
+            for (int j = i; j < leng - 1; j++) {
+                if (arr[i] > arr[j + 1]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
         System.out.println(Arrays.toString(arr));
     }
 }
