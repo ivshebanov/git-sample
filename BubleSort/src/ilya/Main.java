@@ -6,53 +6,86 @@ public class Main {
 
     public static void main(String[] args) {
         int[] newMas = {4, 3, 6, 8, 2, 9, 12, 3, 5};
-//        bubleSotrt(newMas);
-//        bubbleSortWhile(newMas);
+        bubleSotrt(newMas);
+        bubbleSortWhile(newMas);
         viborSort(newMas);
+        vSort(newMas);
     }
 
     private static void bubleSotrt(int[] arr) {
-        int leng = arr.length - 1;
-        for (int i = leng; i >= 0; i--) {
+        int[] array = Arrays.copyOf(arr, arr.length);
+        long start = System.nanoTime();
+        int leng = array.length;
+        for (int i = leng - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        long stop = System.nanoTime();
+        System.out.println(stop - start);
+        System.out.println(Arrays.toString(array));
+    }
+
+    private static void viborSort(int[] arr) {
+        int[] array = Arrays.copyOf(arr, arr.length);
+        long start = System.nanoTime();
+        int leng = array.length;
+        for (int i = 0; i < leng; i++) {
+            for (int j = i; j < leng - 1; j++) {
+                if (array[i] > array[j + 1]) {
+                    int temp = array[i];
+                    array[i] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+        long stop = System.nanoTime();
+        System.out.println(stop - start);
+        System.out.println(Arrays.toString(array));
     }
 
     private static void bubbleSortWhile(int[] arr) {
+        int[] array = Arrays.copyOf(arr, arr.length);
+        long start = System.nanoTime();
         int count;
-        int leng = arr.length;
+        int leng = array.length;
         do {
             count = 0;
             for (int i = 0; i < leng - 1; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    int temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
+                if (array[i] > array[i + 1]) {
+                    int temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
                     count++;
                 }
             }
         } while (count > 0);
-        System.out.println(Arrays.toString(arr));
+        long stop = System.nanoTime();
+        System.out.println(stop - start);
+        System.out.println(Arrays.toString(array));
     }
 
-    private static void viborSort(int[] arr) {
-        int leng = arr.length;
-        for (int i = 0; i < leng; i++) {
-            for (int j = i; j < leng - 1; j++) {
-                if (arr[i] > arr[j + 1]) {
-                    int temp = arr[i];
-                    arr[i] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
+    private static void vSort(int[] arr) {
+        long start = System.nanoTime();
+        int[] array = Arrays.copyOf(arr, arr.length);
+        int element;
+        int indexToInsert;
+        for (int index = 1; index < array.length; index++) {
+            element = array[index];
+            indexToInsert = index;
+            while (indexToInsert > 0 && array[indexToInsert - 1] > element) {
+                array[indexToInsert] = array[indexToInsert - 1];
+                indexToInsert--;
+                array[indexToInsert] = element;
             }
+
         }
-        System.out.println(Arrays.toString(arr));
+        long stop = System.nanoTime();
+        System.out.println(stop - start);
+        System.out.println(Arrays.toString(array));
     }
 }
