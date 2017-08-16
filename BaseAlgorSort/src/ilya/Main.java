@@ -2,7 +2,7 @@ package ilya;
 
 import java.util.Arrays;
 
-public class Main {0
+public class Main {
 
     public static void main(String[] args) {
         int[] arr = {3, 2, 5, 1, 6, 7, 4, 9, 8, 0};
