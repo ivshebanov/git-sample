@@ -2,7 +2,7 @@ package ilya.algorithms;
 
 import java.util.Arrays;
 
-public class FastSort extends SortingAlgorithms{
+public class FastSort extends SortingAlgorithms {
 
     private static int[] array;
 
