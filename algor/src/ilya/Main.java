@@ -10,19 +10,19 @@ public class Main {
 //        System.out.println(divide(17, 4));
 //        bubbleSort(array);
 
-        Arrays.sort(array);//используется алгоритм быстрой сортировки
+//        Arrays.sort(array);//используется алгоритм быстрой сортировки
 //        Collections.sort(array);//использует алгоритм сортировки слиянием
-        quicSort();
-        System.out.println(Arrays.toString(array));
+//        quicSort();
+//        System.out.println(Arrays.toString(array));
         doSort(0, array.length - 1);
         System.out.println(Arrays.toString(array));
-        String s = "java";
-        String s1 = new String(s);
-        System.out.println(s == s1);
-        System.out.println(s.equals(s1));
-
-        String d = 2 + 2 + " = v";
-        System.out.println(d);
+//        String s = "java";
+//        String s1 = new String(s);
+//        System.out.println(s == s1);
+//        System.out.println(s.equals(s1));
+//
+//        String d = 2 + 2 + " = v";
+//        System.out.println(d);
 
     }
 
