@@ -17,14 +17,13 @@ public class Ufo extends BaseObject {
     @Override
     public void move() {
         double dx = Math.random() * 2 - 1;
-         double dy = Math.random() * 2 - 1;
+        double dy = Math.random() * 2 - 1;
+
         x += dx;
         y += dy;
-
         checkBorders(radius, Space.game.getWidth() - radius + 1, radius - 1, Space.game.getHeight() / 2 - 1);
-
         int ramdom = (int) (Math.random() * 10);
-        if (ramdom == 10) {
+        if (ramdom == 0) {
             fire();
         }
     }

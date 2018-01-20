@@ -13,7 +13,7 @@ public abstract class BaseObject {
         this.isAlive = true;
     }
 
-    public void draw() {
+    public void draw(Canvas canvas) {
 
     }
 
@@ -21,7 +21,7 @@ public abstract class BaseObject {
 
     }
 
-    private void die() {
+    public void die() {
         this.isAlive = false;
     }
 
