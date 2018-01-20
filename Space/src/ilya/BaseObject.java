@@ -27,7 +27,14 @@ public abstract class BaseObject {
 
     public boolean isInsert(BaseObject o) {
         double dist = Math.sqrt((this.x - o.x) * (this.x - o.x) + (this.y - o.y) * (this.y - o.y));
-        return dist < Math.max(this.radius, o.radius);
+        return dist <= Math.max(this.radius, o.radius);
+    }
+
+    public void checkBorders(double minx, double maxx, double miny, double maxy) {
+        if (x < minx) x = minx;
+        if (x > maxx) x = maxx;
+        if (y < minx) x = miny;
+        if (y > maxx) y = maxy;
     }
 
     public boolean isAlive() {

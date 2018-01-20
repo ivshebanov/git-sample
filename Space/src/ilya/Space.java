@@ -42,4 +42,28 @@ public class Space {
     public static void main(String[] args) {
 
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public ArrayList<Ufo> getUfos() {
+        return ufos;
+    }
+
+    public ArrayList<Rocket> getRockets() {
+        return rockets;
+    }
+
+    public ArrayList<Bomb> getBombs() {
+        return bombs;
+    }
+
+    public static Space getGame() {
+        return game;
+    }
 }
