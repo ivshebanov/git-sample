@@ -1,3 +1,0 @@
-# git-sample
-rad
-new
