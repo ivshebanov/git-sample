@@ -1,26 +1,27 @@
-/*
- * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
     private Client client;
     private ConsoleEventLogger cel;
 
-    private void logEvent(String msg){
+    public App() {
+    }
+
+    public App(Client client, ConsoleEventLogger cel) {
+        this.client = client;
+        this.cel = cel;
+    }
+
+    private void logEvent(String msg) {
         String messeg = msg.replaceAll(client.getId(), client.getFullName());
         cel.logEvent(messeg);
     }
 
     public static void main(String[] args) {
-        App app = new App();
-
-        app.client = new Client("1", "John Smith");
-        app.cel = new ConsoleEventLogger();
-
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        App app = (App) ctx.getBean("app");
         app.logEvent("Some event for user 1");
+        app.logEvent("Some event for user 2");
     }
 }
